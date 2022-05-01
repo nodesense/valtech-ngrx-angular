@@ -1,9 +1,21 @@
 # NgrxProductApp
 
+```
+ git clone https://github.com/nodesense/valtech-ngrx-angular
+
+ cd valtech-ngrx-angular
+
+ npm install 
+
+ ng serve
+
+```
 
 https://v9.ngrx.io/docs
 
 ```
+  ng new ngrx-product-app
+  npm install @ngrx/store@^9
   ng g c components/counter
 ```
 
