@@ -17,6 +17,8 @@ https://v9.ngrx.io/docs
   ng new ngrx-product-app
   npm install @ngrx/store@^9
   ng g c components/counter
+
+  ng g c components/cart
 ```
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.15.

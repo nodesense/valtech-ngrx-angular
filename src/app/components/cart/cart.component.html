@@ -1,0 +1,29 @@
+<h2>Cart Table</h2>
+
+<button (click)="addItem()">Add Item</button>
+<button (click)="emptyCart()">Empty</button>
+
+<p>Amount {{amount$ | async | currency:'INR'}}</p>
+<p>Total Items  {{totalItems$ | async}}</p>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Qty</th>
+        <th>Total</th>
+        <th>Ops</th>
+    </tr>
+
+    <!-- the row shall be repeated for each item -->
+
+    <tr *ngFor="let item of ( items$ | async )   ">
+        <td>{{item.name  | uppercase }}</td>
+        <td>{{item.price | number:'0.2'  | currency:'INR' }}</td>
+        <td>{{item.qty}}</td>
+        <td>{{ (item.qty * item.price) | currency:'INR'  }}</td>
+        <td>
+            <button (click)="removeItem(item.id)">X</button>
+        </td>
+    </tr>
+</table>
