@@ -1,7 +1,7 @@
 <h2>Checkout</h2>
 
 
-<form  [formGroup]="checkoutForm" >
+<form  [formGroup]="checkoutForm" (ngSubmit)="checkout()" >
 
     First Name <input type="text" formControlName="firstName" />
 
@@ -21,6 +21,8 @@ City <select name="order.address.city" formControlName="city" >
     </option>
 </select>
 
+
+<button type="submit">Save</button>
 
 
 </form>

@@ -105,4 +105,10 @@ export class CheckoutComponent implements OnInit {
     // this.cities$ to be updated by selector
     this.store.dispatch(fetchCities({stateId}))
   }
+
+  checkout() {
+    console.log("checkout called")
+    // dispatch an checkout action along with order
+    // implement a effect, use echeckout service, checkout funciton, post method
+  }
 }
