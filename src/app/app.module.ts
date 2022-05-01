@@ -10,6 +10,7 @@ import { CounterComponent } from './components/counter/counter.component';
 import { cartReducer } from './state/reducers/cart.reducer';
 import { CartState } from './state/models/cart-state';
 import { CartComponent } from './components/cart/cart.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
  
 interface StoreState  {
   count: number;
@@ -22,7 +23,8 @@ interface StoreState  {
   declarations: [
     AppComponent,
     CounterComponent,
-    CartComponent
+    CartComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

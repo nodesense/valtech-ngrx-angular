@@ -16,10 +16,22 @@ https://v9.ngrx.io/docs
 ```
   ng new ngrx-product-app
   npm install @ngrx/store@^9
+
+  npm install @ngrx/effects@^9
+
   ng g c components/counter
 
   ng g c components/cart
+  
+  ng g c components/checkout
 ```
+
+NgRX/Effect
+==============
+
+    redux part is synchronous, reducer is sync, not viable to write api call which is async
+
+    Effect - useful to make api calls etc, asyncm by using rxjs
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.15.
 
