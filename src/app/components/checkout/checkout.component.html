@@ -4,9 +4,15 @@
 
 <p *ngIf="checkoutForm.dirty"> Form data changed </p>
  
-<pre *ngIf="firstName.errors">
-    {{firstName.errors | json }}
+<pre *ngIf="firstName.errors"> 
+   firstName {{firstName.errors | json }}
 </pre>
+
+
+<pre *ngIf="coupon.errors"> 
+   coupon {{coupon.errors | json }}
+</pre>
+
 
 
 <form  [formGroup]="checkoutForm" (ngSubmit)="checkout()"  >
@@ -30,7 +36,12 @@ City <select name="order.address.city" formControlName="city" >
 </select>
 
 
-<button type="submit">Save</button>
+
+<p>Values for Coupon FREEDOM or REPUBLIC </p>
+Coupon <input type="text" formControlName="coupon" />
+
+
+<button type="submit" [disabled]="checkoutForm.invalid">Save</button>
 
 
 </form>

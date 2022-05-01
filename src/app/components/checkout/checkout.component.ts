@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { dispatch } from 'rxjs/internal/observable/pairs';
@@ -11,6 +11,26 @@ import { Order } from 'src/app/state/models/order';
 import { State } from 'src/app/state/models/state';
 import { selectCartItems } from 'src/app/state/selectors/cart.selector';
 import { selectCities, selectOrder, selectStates, selectStatus } from 'src/app/state/selectors/checkout.selector';
+
+
+export function couponValidator(control: AbstractControl) {
+  console.log("validator ", control.value);
+  
+  const coupon: string = control.value.trim().toUpperCase()
+
+  if (coupon == 'FREEDOM' ||
+  coupon == 'REPUBLIC' || 
+      coupon == 'DIWALI' || 
+      coupon == 'CHRISTMAS'
+   ) {
+    return null; // no errror
+  }
+
+  // this appear in controlname.errors
+  return {
+      invalidCoupon: true
+  };
+}
 
 @Component({
   selector: 'app-checkout',
@@ -30,6 +50,8 @@ export class CheckoutComponent implements OnInit {
   firstName: FormControl;
   city: FormControl;
   state: FormControl;
+
+  coupon: FormControl;
 
   order: Order = new Order()
 
@@ -53,13 +75,20 @@ export class CheckoutComponent implements OnInit {
 
     this.state = new FormControl("", Validators.required )
     this.city = new FormControl("", Validators.required)
-
+    this.coupon =  new FormControl("", 
+                                        Validators.compose([
+                                          Validators.required, 
+                                          Validators.minLength(2),
+                                          Validators.maxLength(50),
+                                          couponValidator
+                                        ]))
     this.checkoutForm = this.formBuilder.group({
       // key: value control
       // key used in html/form control name: component FormControl 
       firstName: this.firstName,
       state : this.state,
-      city: this.city
+      city: this.city,
+      coupon: this.coupon
     })
    }
 
