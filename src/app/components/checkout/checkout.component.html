@@ -1,7 +1,15 @@
 <h2>Checkout</h2>
 
+<p *ngIf="checkoutForm.invalid"> Form Error </p>
 
-<form  [formGroup]="checkoutForm" (ngSubmit)="checkout()" >
+<p *ngIf="checkoutForm.dirty"> Form data changed </p>
+ 
+<pre *ngIf="firstName.errors">
+    {{firstName.errors | json }}
+</pre>
+
+
+<form  [formGroup]="checkoutForm" (ngSubmit)="checkout()"  >
 
     First Name <input type="text" formControlName="firstName" />
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { dispatch } from 'rxjs/internal/observable/pairs';
@@ -44,9 +44,15 @@ export class CheckoutComponent implements OnInit {
     
 
 
-    this.firstName = new FormControl("hello")
-    this.state = new FormControl()
-    this.city = new FormControl()
+    this.firstName = new FormControl("hello", 
+                            Validators.compose([
+                              Validators.required, 
+                              Validators.minLength(2),
+                              Validators.maxLength(50)
+                            ]))
+
+    this.state = new FormControl("", Validators.required )
+    this.city = new FormControl("", Validators.required)
 
     this.checkoutForm = this.formBuilder.group({
       // key: value control
