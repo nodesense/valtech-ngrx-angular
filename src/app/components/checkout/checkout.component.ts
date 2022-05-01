@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { dispatch } from 'rxjs/internal/observable/pairs';
 import { filter, map } from 'rxjs/operators';
-import { fetchCities, fetchStates } from 'src/app/state/actions/checkout.actions';
+import { checkout, fetchCities, fetchStates } from 'src/app/state/actions/checkout.actions';
 import { AppState } from 'src/app/state/models/app-state';
 import { City } from 'src/app/state/models/city';
 import { Order } from 'src/app/state/models/order';
@@ -110,5 +110,6 @@ export class CheckoutComponent implements OnInit {
     console.log("checkout called")
     // dispatch an checkout action along with order
     // implement a effect, use echeckout service, checkout funciton, post method
+    this.store.dispatch(checkout({order: this.order}))
   }
 }

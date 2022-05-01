@@ -31,3 +31,9 @@ City <select name="order.address.city" formControlName="city" >
 <pre>
     {{order | json}}
 </pre>
+
+<h5>saved order</h5>
+
+<pre>
+    {{order$ | async | json}}
+</pre>

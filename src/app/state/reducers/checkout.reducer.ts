@@ -1,6 +1,6 @@
 // checkout.reducer.ts
 import { createReducer, on } from '@ngrx/store';
-import { checkoutStatus, initalizeCities, initalizeOrder, initalizeStates } from '../actions/checkout.actions';
+import { checkoutStatus, initalizeCities, initializeOrder, initalizeStates } from '../actions/checkout.actions';
 import { CheckoutState } from '../models/checkout-state';
 ;
 
@@ -24,7 +24,7 @@ const _checkoutReducer = createReducer(INITIAL_STATE,
         return {...state, status: action.status}
     }),  
     
-    on(initalizeOrder, (state, action) =>  {
+    on(initializeOrder, (state, action) =>  {
         return {...state, order: action.order}
     }),  
     

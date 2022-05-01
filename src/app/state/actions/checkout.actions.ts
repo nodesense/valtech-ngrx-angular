@@ -19,7 +19,7 @@ export const initalizeCities = createAction(
   );
 
   
- export const initalizeOrder = createAction(
+ export const initializeOrder = createAction(
     // [ModuleName ComponentName/Optional] Action"
     '[Cart CheckoutComp] initalizeOrder',
     props<{ order: Order }>()
