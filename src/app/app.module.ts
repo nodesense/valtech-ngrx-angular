@@ -16,6 +16,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { CheckoutEffects } from './state/effects/checkout.effects';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
  
 interface StoreState  {
   count: number;
@@ -49,7 +51,8 @@ interface StoreState  {
 
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
     
   ],
   providers: [

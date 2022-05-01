@@ -24,6 +24,18 @@ https://v9.ngrx.io/docs
   ng g c components/cart
   
   ng g c components/checkout
+
+  ng add @angular/pwa
+
+
+  ng build --prod 
+
+  npm install http-server -g
+
+  cd dist
+  cd ngrx-product-app
+
+  http-server -c-1 -p 8888 .
 ```
 
 NgRX/Effect
