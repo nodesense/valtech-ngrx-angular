@@ -1,18 +1,21 @@
 <h2>Checkout</h2>
 
 
-<form>
+<form  [formGroup]="checkoutForm" >
 
+    First Name <input type="text" formControlName="firstName" />
 
     
- State <select name="order.address.state" [(ngModel)]="stateId" (ngModelChange)="loadCities(stateId)" >
+ State <select name="order.address.state" 
+                formControlName="state"
+                >
   
     <option *ngFor="let state of (states$ | async)" [value]="state.id">
         {{state.name}}
     </option>
 </select>
 
-City <select name="order.address.city"  >
+City <select name="order.address.city" formControlName="city" >
     <option *ngFor="let city of (cities$ | async)" [value]="city.id">
         {{city.name}}
     </option>

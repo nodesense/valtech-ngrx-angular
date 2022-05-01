@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { dispatch } from 'rxjs/internal/observable/pairs';
@@ -23,11 +24,32 @@ export class CheckoutComponent implements OnInit {
   
   order$: Observable<Order>;
 
-  constructor(private store: Store<AppState>) {
+  checkoutForm: FormGroup;
+  firstName: FormControl;
+  city: FormControl;
+  state: FormControl;
+
+  order: Order = new Order()
+
+  constructor(private store: Store<AppState>,
+              private formBuilder: FormBuilder
+    ) {
     this.states$ = this.store.select(selectStates)
     this.cities$ = this.store.select(selectCities)
     this.status$ = this.store.select(selectStatus)
     this.order$ = this.store.select(selectOrder)
+
+    this.firstName = new FormControl("hello")
+    this.state = new FormControl()
+    this.city = new FormControl()
+
+    this.checkoutForm = this.formBuilder.group({
+      // key: value control
+      // key used in html/form control name: component FormControl 
+      firstName: this.firstName,
+      state : this.state,
+      city: this.city
+    })
    }
 
    stateId: any;
@@ -38,6 +60,17 @@ export class CheckoutComponent implements OnInit {
     // api call, initialize states in reducer
     // the component selectors pull latest states and render on ui
     this.store.dispatch(fetchStates())
+
+    this.checkoutForm.valueChanges
+                     .subscribe ( values => {
+                       console.log("Values ", values)
+                     })
+
+    this.state.valueChanges
+              .subscribe (stateId => {
+                console.log("reactive state changes", stateId)
+                this.store.dispatch(fetchCities({stateId}))
+              })
   }
 
 
