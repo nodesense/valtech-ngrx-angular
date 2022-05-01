@@ -11,6 +11,7 @@ import { cartReducer } from './state/reducers/cart.reducer';
 import { CartState } from './state/models/cart-state';
 import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { checkoutReducer } from './state/reducers/checkout.reducer';
  
 interface StoreState  {
   count: number;
@@ -34,7 +35,8 @@ interface StoreState  {
       // state: reducerFunc that manages the state
       // 2 states, each state is managed by respective reducer
       count: counterReducer,
-      cart: cartReducer
+      cart: cartReducer,
+      checkout: checkoutReducer
     })
   ],
   providers: [

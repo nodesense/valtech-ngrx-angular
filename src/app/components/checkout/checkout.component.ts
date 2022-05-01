@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { fetchStates } from 'src/app/state/actions/checkout.actions';
+import { AppState } from 'src/app/state/models/app-state';
+import { City } from 'src/app/state/models/city';
+import { Order } from 'src/app/state/models/order';
+import { State } from 'src/app/state/models/state';
+import { selectCities, selectOrder, selectStates, selectStatus } from 'src/app/state/selectors/checkout.selector';
 
 @Component({
   selector: 'app-checkout',
@@ -7,9 +15,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckoutComponent implements OnInit {
 
-  constructor() { }
+  states$: Observable<State[]>;
+  cities$: Observable<City[]>;
+  
+  status$: Observable<boolean>;
+  
+  order$: Observable<Order>;
+
+  constructor(private store: Store<AppState>) {
+    this.states$ = this.store.select(selectStates)
+    this.cities$ = this.store.select(selectCities)
+    this.status$ = this.store.select(selectStatus)
+    this.order$ = this.store.select(selectOrder)
+   }
 
   ngOnInit(): void {
+    // dispatch an event/action, to fetch states
+    // fetchStats action is intercepted by Effect, that would pull data from 
+    // api call, initialize states in reducer
+    // the component selectors pull latest states and render on ui
+    this.store.dispatch(fetchStates())
   }
 
 }
