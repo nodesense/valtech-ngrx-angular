@@ -12,6 +12,10 @@ import { CartState } from './state/models/cart-state';
 import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { checkoutReducer } from './state/reducers/checkout.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { CheckoutEffects } from './state/effects/checkout.effects';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
  
 interface StoreState  {
   count: number;
@@ -37,7 +41,16 @@ interface StoreState  {
       count: counterReducer,
       cart: cartReducer,
       checkout: checkoutReducer
-    })
+    }),
+    
+    EffectsModule.forRoot ([
+      CheckoutEffects
+    ]),
+
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
+    
   ],
   providers: [
    
