@@ -5,10 +5,19 @@
 
 
     
- State <select name="order.address.state"     >
-    
+ State <select name="order.address.state" [(ngModel)]="stateId" (ngModelChange)="loadCities(stateId)" >
+  
     <option *ngFor="let state of (states$ | async)" [value]="state.id">
         {{state.name}}
     </option>
 </select>
+
+City <select name="order.address.city"  >
+    <option *ngFor="let city of (cities$ | async)" [value]="city.id">
+        {{city.name}}
+    </option>
+</select>
+
+
+
 </form>

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { fetchStates } from 'src/app/state/actions/checkout.actions';
+import { dispatch } from 'rxjs/internal/observable/pairs';
+import { fetchCities, fetchStates } from 'src/app/state/actions/checkout.actions';
 import { AppState } from 'src/app/state/models/app-state';
 import { City } from 'src/app/state/models/city';
 import { Order } from 'src/app/state/models/order';
@@ -29,6 +30,8 @@ export class CheckoutComponent implements OnInit {
     this.order$ = this.store.select(selectOrder)
    }
 
+   stateId: any;
+
   ngOnInit(): void {
     // dispatch an event/action, to fetch states
     // fetchStats action is intercepted by Effect, that would pull data from 
@@ -37,4 +40,10 @@ export class CheckoutComponent implements OnInit {
     this.store.dispatch(fetchStates())
   }
 
+
+  loadCities(stateId: number) {
+    // to be intercepted by effects, based on state id, fetch cities, and initialize store
+    // this.cities$ to be updated by selector
+    this.store.dispatch(fetchCities({stateId}))
+  }
 }
